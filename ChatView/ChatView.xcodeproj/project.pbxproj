@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		663D67281ADEE1AD00B81230 /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 663D67271ADEE1AD00B81230 /* ColorView.m */; };
 		664BCF221ADE3E3A0094CC72 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 664BCF211ADE3E3A0094CC72 /* AppDelegate.m */; };
 		664BCF241ADE3E3A0094CC72 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 664BCF231ADE3E3A0094CC72 /* main.m */; };
 		664BCF261ADE3E3A0094CC72 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664BCF251ADE3E3A0094CC72 /* Images.xcassets */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		663D67261ADEE1AD00B81230 /* ColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorView.h; sourceTree = "<group>"; };
+		663D67271ADEE1AD00B81230 /* ColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorView.m; sourceTree = "<group>"; };
 		664BCF1B1ADE3E3A0094CC72 /* ChatView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		664BCF1F1ADE3E3A0094CC72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		664BCF201ADE3E3A0094CC72 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -295,6 +298,8 @@
 				664EF6941ADED81B0076018F /* ChatLineView.m */,
 				664EF6961ADEDE650076018F /* FlippedView.h */,
 				664EF6971ADEDE650076018F /* FlippedView.m */,
+				663D67261ADEE1AD00B81230 /* ColorView.h */,
+				663D67271ADEE1AD00B81230 /* ColorView.m */,
 			);
 			name = ChatLine;
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 				664BCF6D1ADE3EB80094CC72 /* GCDAsyncSocket.m in Sources */,
 				664BCF671ADE3E910094CC72 /* DDRange.m in Sources */,
 				664EF6921ADED20A0076018F /* ChatLine.m in Sources */,
+				663D67281ADEE1AD00B81230 /* ColorView.m in Sources */,
 				664BCF891ADE407F0094CC72 /* MyHTTPConnection.m in Sources */,
 				664BCF5B1ADE3E910094CC72 /* HTTPAuthenticationRequest.m in Sources */,
 				664BCF5E1ADE3E910094CC72 /* HTTPMessage.m in Sources */,

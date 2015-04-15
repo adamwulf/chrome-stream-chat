@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ChatLine.h"
+#import "FlippedView.h"
 
-@interface ChatLineView : NSView
+@interface ChatLineView : FlippedView
 
 -(id) initWithChatLine:(ChatLine*)line forWidth:(CGFloat)width;
 

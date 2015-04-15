@@ -8,6 +8,7 @@
 
 #import "ChatLineView.h"
 #import "ChatLine.h"
+#import "ColorView.h"
 
 @implementation ChatLineView{
     NSTextField* host;
@@ -26,14 +27,30 @@
     [host sizeToFit];
     [sender sizeToFit];
     [message sizeToFit];
-
+    
     if(self = [super initWithFrame:NSMakeRect(0, 0, width, host.bounds.size.height + 20 + message.bounds.size.height)]){
+        ColorView* border = [[ColorView alloc] initWithFrame:NSMakeRect(0, 0, width, 1)];
+        [self addSubview:border];
+        
+        [sender setFont:[NSFont boldSystemFontOfSize:sender.font.pointSize]];
+        
+        [host setEditable:NO];
+        [sender setEditable:NO];
+        [message setEditable:NO];
+        [host setBordered:NO];
+        [sender setBordered:NO];
+        [message setBordered:NO];
+        sender.backgroundColor = [NSColor clearColor];
+        host.backgroundColor = [NSColor clearColor];
+        message.backgroundColor = [NSColor clearColor];
+        
         [self addSubview:host];
         [self addSubview:sender];
         [self addSubview:message];
         
-        sender.frame = NSMakeRect(0, message.bounds.size.height + 10, sender.bounds.size.width, sender.bounds.size.height);
-        host.frame = NSMakeRect(width - host.bounds.size.width, message.bounds.size.height + 10, host.bounds.size.width, host.bounds.size.height);
+        sender.frame = NSMakeRect(0, 5, sender.bounds.size.width, sender.bounds.size.height);
+        host.frame = NSMakeRect(width - host.bounds.size.width, 5, host.bounds.size.width, host.bounds.size.height);
+        message.frame = NSMakeRect(0, self.bounds.size.height - message.bounds.size.height - 15, message.bounds.size.width, message.bounds.size.height);
     }
     return self;
 }
