@@ -14,17 +14,33 @@ function processLiveCodingLogElement($e){
 	var sender = $e.find("a").text().trim();
 	var $c = $e.clone();
 	$c.find("a").remove();
+	$c.find("img").replaceWith(function() { return $.trim(this.alt); });
 	var comment = $c.text().trim();
 	
 	processLog(window.location.hostname, sender, comment);
 }
 
 function processYouTubeLogElement($e){
-	var sender = $e.find(".inline-author").text().trim();
-	var comment = $e.find(".inline-comment").text().trim();
-	processLog(window.location.hostname, sender, comment);
+	try{
+		var sender = $e.find(".inline-author").text().trim();
+		var comment = $e.find(".inline-comment").text().trim();
+		processLog(window.location.hostname, sender, comment);
+	}catch(e){
+		console.log(e);
+	}
 }
 
+
+function processTwitchLogElement($e){
+	if(!$e.hasClass("admin")){
+		$c = $e.clone();
+		$c.find(".message").find("img").replaceWith(function() { return this.alt; });
+
+		var sender = $c.find(".from").text().trim();
+		var comment = $c.find(".message").text().trim();
+		processLog(window.location.hostname, sender, comment);
+	}
+}
 
 
 chrome.extension.sendMessage({}, function(response) {
@@ -41,6 +57,7 @@ chrome.extension.sendMessage({}, function(response) {
 				// livecoding.tv
 				var currLCSib = false;
 				var currYTSib = false;
+				var currTWSib = false;
 				setInterval(function() {
 					if(!currLCSib){
 						currLCSib = $("ul.message-pane li:first");
@@ -66,8 +83,22 @@ chrome.extension.sendMessage({}, function(response) {
 						currYTSib = currYTSib.next();
 						processYouTubeLogElement(currYTSib);
 					}
+					
+					
+					
+					if(!currTWSib){
+						currTWSib = $("ul.chat-lines li.chat-line:first");
+						if(currTWSib.length){
+							processTwitchLogElement(currTWSib);
+						}else{
+							currTWSib = false;
+						}
+					}else if(currTWSib.nextAll("li.chat-line").length){
+						currTWSib = currTWSib.nextAll("li.chat-line");
+						processTwitchLogElement(currTWSib);
+					}
 
-				}, 30);
+				}, 100);
 			
 			
 			
