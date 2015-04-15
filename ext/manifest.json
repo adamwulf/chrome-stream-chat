@@ -13,8 +13,16 @@
   "permissions": [
     "https://www.youtube.com/*",
     "https://www.livecoding.tv/*",
-    "http://www.twitch.tv/*"
+    "http://www.twitch.tv/*",
+    "http://localhost:54545/*"
   ],
+  "background": {
+        "scripts": [
+	        "js/jquery/jquery.min.js",
+            "src/inject/background.js"
+        ],
+        "persistent": true
+    },
   "content_scripts": [
     {
       "matches": [

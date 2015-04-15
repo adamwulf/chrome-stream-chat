@@ -1,9 +1,12 @@
 
-
-
 function processLog(host, sender, message){
-		console.log("formatted [" + window.location.hostname + "] [" + sender + "] [" + message + "]");
-
+	
+	chrome.runtime.sendMessage(
+	    {"host": host, "sender" : sender, "message" : message},
+	    function (response) {
+	        console.log(response);
+	    }
+	);
 }
 
 
