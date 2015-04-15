@@ -11,6 +11,7 @@
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "MyHTTPConnection.h"
+#import "ChatLineView.h"
 
 // Log levels: off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -19,15 +20,22 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 @interface AppDelegate ()
 
 @property (weak) IBOutlet NSWindow *window;
+
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate{
+    NSMutableArray* chatLines;
+    IBOutlet NSScrollView* scrollView;
+    NSView* documentView;
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     // Configure our logging framework.
     // To keep things simple and fast, we're just going to log to the Xcode console.
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
+    chatLines = [NSMutableArray array];
     
     // Initalize our http server
     httpServer = [[HTTPServer alloc] init];
@@ -56,12 +64,53 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     {
         DDLogError(@"Error starting HTTP Server: %@", error);
     }
+    
+    documentView = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, scrollView.bounds.size.width, 1)];
+    scrollView.documentView = documentView;
+
+    
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 }
 
+
+-(void) chatLineAdded:(ChatLine*)chat{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [chatLines addObject:chat];
+        
+        ChatLineView* v = [[ChatLineView alloc] initWithChatLine:chat forWidth:scrollView.bounds.size.width];
+        
+        NSRect fr = [[documentView.subviews lastObject] frame];
+        v.frame = NSMakeRect(0, fr.origin.y + fr.size.height, v.bounds.size.width, v.bounds.size.height);
+        
+        
+        fr = [scrollView.documentView frame];
+        fr.size.height += v.bounds.size.height;
+        [scrollView.documentView setFrame:fr];
+        
+        [documentView addSubview:v];
+        
+        scrollView.hasHorizontalScroller = NO;
+        scrollView.hasVerticalScroller = YES;
+    });
+}
 
 
 

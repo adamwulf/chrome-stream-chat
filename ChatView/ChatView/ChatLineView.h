@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ChatLineView.h
 //  ChatView
 //
 //  Created by Adam Wulf on 4/15/15.
@@ -9,14 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import "ChatLine.h"
 
-@class HTTPServer;
+@interface ChatLineView : NSView
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>{
-    HTTPServer *httpServer;
-}
-
--(void) chatLineAdded:(ChatLine*)chat;
-
+-(id) initWithChatLine:(ChatLine*)line forWidth:(CGFloat)width;
 
 @end
-

@@ -35,6 +35,8 @@
 		664BCF841ADE3EC60094CC72 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 664BCF7C1ADE3EC60094CC72 /* DispatchQueueLogFormatter.m */; };
 		664BCF851ADE3EC60094CC72 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 664BCF7D1ADE3EC60094CC72 /* README.txt */; };
 		664BCF891ADE407F0094CC72 /* MyHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 664BCF881ADE407F0094CC72 /* MyHTTPConnection.m */; };
+		664EF6921ADED20A0076018F /* ChatLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 664EF6911ADED20A0076018F /* ChatLine.m */; };
+		664EF6951ADED81B0076018F /* ChatLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 664EF6941ADED81B0076018F /* ChatLineView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,10 @@
 		664BCF7D1ADE3EC60094CC72 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		664BCF871ADE407F0094CC72 /* MyHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPConnection.h; sourceTree = "<group>"; };
 		664BCF881ADE407F0094CC72 /* MyHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyHTTPConnection.m; sourceTree = "<group>"; };
+		664EF6901ADED20A0076018F /* ChatLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatLine.h; sourceTree = "<group>"; };
+		664EF6911ADED20A0076018F /* ChatLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatLine.m; sourceTree = "<group>"; };
+		664EF6931ADED81B0076018F /* ChatLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatLineView.h; sourceTree = "<group>"; };
+		664EF6941ADED81B0076018F /* ChatLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatLineView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +155,7 @@
 		664BCF1D1ADE3E3A0094CC72 /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
+				664EF68F1ADED1FD0076018F /* ChatLine */,
 				664BCF871ADE407F0094CC72 /* MyHTTPConnection.h */,
 				664BCF881ADE407F0094CC72 /* MyHTTPConnection.m */,
 				664BCF201ADE3E3A0094CC72 /* AppDelegate.h */,
@@ -276,6 +283,17 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		664EF68F1ADED1FD0076018F /* ChatLine */ = {
+			isa = PBXGroup;
+			children = (
+				664EF6901ADED20A0076018F /* ChatLine.h */,
+				664EF6911ADED20A0076018F /* ChatLine.m */,
+				664EF6931ADED81B0076018F /* ChatLineView.h */,
+				664EF6941ADED81B0076018F /* ChatLineView.m */,
+			);
+			name = ChatLine;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -379,6 +397,7 @@
 				664BCF811ADE3EC60094CC72 /* DDLog.m in Sources */,
 				664BCF6D1ADE3EB80094CC72 /* GCDAsyncSocket.m in Sources */,
 				664BCF671ADE3E910094CC72 /* DDRange.m in Sources */,
+				664EF6921ADED20A0076018F /* ChatLine.m in Sources */,
 				664BCF891ADE407F0094CC72 /* MyHTTPConnection.m in Sources */,
 				664BCF5B1ADE3E910094CC72 /* HTTPAuthenticationRequest.m in Sources */,
 				664BCF5E1ADE3E910094CC72 /* HTTPMessage.m in Sources */,
@@ -387,6 +406,7 @@
 				664BCF5F1ADE3E910094CC72 /* WebSocket.m in Sources */,
 				664BCF611ADE3E910094CC72 /* HTTPFileResponse.m in Sources */,
 				664BCF651ADE3E910094CC72 /* DDData.m in Sources */,
+				664EF6951ADED81B0076018F /* ChatLineView.m in Sources */,
 				664BCF5C1ADE3E910094CC72 /* HTTPServer.m in Sources */,
 				664BCF841ADE3EC60094CC72 /* DispatchQueueLogFormatter.m in Sources */,
 				664BCF631ADE3E910094CC72 /* HTTPAsyncFileResponse.m in Sources */,
@@ -586,6 +606,7 @@
 				664BCF3A1ADE3E3A0094CC72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		664BCF3B1ADE3E3A0094CC72 /* Build configuration list for PBXNativeTarget "ChatViewTests" */ = {
 			isa = XCConfigurationList;
@@ -594,6 +615,7 @@
 				664BCF3D1ADE3E3A0094CC72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

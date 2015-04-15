@@ -3,6 +3,7 @@
 #import "HTTPDataResponse.h"
 #import "DDNumber.h"
 #import "HTTPLogging.h"
+#import "AppDelegate.h"
 
 // Log levels : off, error, warn, info, verbose
 // Other flags: trace
@@ -65,7 +66,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 		HTTPLogVerbose(@"%@[%p]: postStr: %@", THIS_FILE, self, postStr);
         
         
-        NSMutableDictionary* queryStringDictionary = [NSMutableDictionary dictionary];
+        NSMutableDictionary* params = [NSMutableDictionary dictionary];
         NSArray *urlComponents = [postStr componentsSeparatedByString:@"&"];
         for (NSString *keyValuePair in urlComponents)
         {
@@ -73,10 +74,16 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
             NSString *key = [[pairComponents firstObject] stringByRemovingPercentEncoding];
             NSString *value = [[pairComponents lastObject] stringByRemovingPercentEncoding];
             
-            [queryStringDictionary setObject:value forKey:key];
+            [params setObject:value forKey:key];
         }
+
+        AppDelegate* delegate = [[NSApplication sharedApplication] delegate];
+        ChatLine* chat = [[ChatLine alloc] initWithHost:[params objectForKey:@"host"]
+                                              andSender:[params objectForKey:@"sender"]
+                                             andMessage:[params objectForKey:@"message"]];
+        [delegate chatLineAdded:chat];
 		
-        NSLog(@"query: %@", queryStringDictionary);
+        NSLog(@"query: %@", params);
         
 		NSData *response = [@"<html><body>Correct<body></html>" dataUsingEncoding:NSUTF8StringEncoding];
 		
