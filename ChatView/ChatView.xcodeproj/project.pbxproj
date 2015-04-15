@@ -37,6 +37,7 @@
 		664BCF891ADE407F0094CC72 /* MyHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 664BCF881ADE407F0094CC72 /* MyHTTPConnection.m */; };
 		664EF6921ADED20A0076018F /* ChatLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 664EF6911ADED20A0076018F /* ChatLine.m */; };
 		664EF6951ADED81B0076018F /* ChatLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 664EF6941ADED81B0076018F /* ChatLineView.m */; };
+		664EF6981ADEDE650076018F /* FlippedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 664EF6971ADEDE650076018F /* FlippedView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,8 @@
 		664EF6911ADED20A0076018F /* ChatLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatLine.m; sourceTree = "<group>"; };
 		664EF6931ADED81B0076018F /* ChatLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatLineView.h; sourceTree = "<group>"; };
 		664EF6941ADED81B0076018F /* ChatLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatLineView.m; sourceTree = "<group>"; };
+		664EF6961ADEDE650076018F /* FlippedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlippedView.h; sourceTree = "<group>"; };
+		664EF6971ADEDE650076018F /* FlippedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlippedView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +293,8 @@
 				664EF6911ADED20A0076018F /* ChatLine.m */,
 				664EF6931ADED81B0076018F /* ChatLineView.h */,
 				664EF6941ADED81B0076018F /* ChatLineView.m */,
+				664EF6961ADEDE650076018F /* FlippedView.h */,
+				664EF6971ADEDE650076018F /* FlippedView.m */,
 			);
 			name = ChatLine;
 			sourceTree = "<group>";
@@ -401,6 +406,7 @@
 				664BCF891ADE407F0094CC72 /* MyHTTPConnection.m in Sources */,
 				664BCF5B1ADE3E910094CC72 /* HTTPAuthenticationRequest.m in Sources */,
 				664BCF5E1ADE3E910094CC72 /* HTTPMessage.m in Sources */,
+				664EF6981ADEDE650076018F /* FlippedView.m in Sources */,
 				664BCF801ADE3EC60094CC72 /* DDFileLogger.m in Sources */,
 				664BCF241ADE3E3A0094CC72 /* main.m in Sources */,
 				664BCF5F1ADE3E910094CC72 /* WebSocket.m in Sources */,

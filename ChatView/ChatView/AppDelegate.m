@@ -12,6 +12,7 @@
 #import "DDTTYLogger.h"
 #import "MyHTTPConnection.h"
 #import "ChatLineView.h"
+#import "FlippedView.h"
 
 // Log levels: off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -65,7 +66,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogError(@"Error starting HTTP Server: %@", error);
     }
     
-    documentView = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, scrollView.bounds.size.width, 1)];
+    documentView = [[FlippedView alloc] initWithFrame:NSMakeRect(0, 0, scrollView.bounds.size.width, 1)];
     scrollView.documentView = documentView;
 
     
@@ -93,13 +94,27 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 -(void) chatLineAdded:(ChatLine*)chat{
     dispatch_async(dispatch_get_main_queue(), ^{
+
+        BOOL isAtBottom = NO;
+        
+        NSLog(@"offset = %f", [[scrollView contentView] documentVisibleRect].origin.y);
+        CGFloat offset = [[scrollView contentView] documentVisibleRect].origin.y;
+        CGFloat visibleHeight = [[scrollView contentView] documentVisibleRect].size.height;
+        CGFloat contentHeight = documentView.bounds.size.height;
+        if(offset + visibleHeight >= contentHeight){
+            isAtBottom = YES;
+        }else{
+            isAtBottom = NO;
+        }
+        
+        
+        
         [chatLines addObject:chat];
         
         ChatLineView* v = [[ChatLineView alloc] initWithChatLine:chat forWidth:scrollView.bounds.size.width];
-        
         NSRect fr = [[documentView.subviews lastObject] frame];
         v.frame = NSMakeRect(0, fr.origin.y + fr.size.height, v.bounds.size.width, v.bounds.size.height);
-        
+        contentHeight += fr.size.height;
         
         fr = [scrollView.documentView frame];
         fr.size.height += v.bounds.size.height;
@@ -109,6 +124,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         
         scrollView.hasHorizontalScroller = NO;
         scrollView.hasVerticalScroller = YES;
+        
+        NSPoint pointToScrollTo = NSMakePoint(0, contentHeight - visibleHeight);
+        [[scrollView contentView] scrollToPoint:pointToScrollTo];
     });
 }
 
