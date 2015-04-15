@@ -71,22 +71,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     documentView = [[FlippedView alloc] initWithFrame:NSMakeRect(0, 0, scrollView.bounds.size.width, 1)];
     scrollView.documentView = documentView;
 
-    
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
-    [self chatLineAdded:[[ChatLine alloc] initWithHost:@"testhost.com" andSender:@"adam" andMessage:@"hasdfl;asdjflasfdj"]];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self chatLineAdded:[[ChatLine alloc] initWithHost:@"" andSender:@"welcome" andMessage:@"chat messages appear here."]];
+    });
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -125,7 +112,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         scrollView.hasHorizontalScroller = NO;
         scrollView.hasVerticalScroller = YES;
         
-        NSPoint pointToScrollTo = NSMakePoint(0, contentHeight - visibleHeight);
+        offset = contentHeight - visibleHeight;
+        if(offset < 0) offset = 0;
+        NSPoint pointToScrollTo = NSMakePoint(0, offset);
         [[scrollView contentView] scrollToPoint:pointToScrollTo];
     });
 }

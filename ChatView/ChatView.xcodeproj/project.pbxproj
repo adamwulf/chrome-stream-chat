@@ -39,6 +39,8 @@
 		664EF6921ADED20A0076018F /* ChatLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 664EF6911ADED20A0076018F /* ChatLine.m */; };
 		664EF6951ADED81B0076018F /* ChatLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 664EF6941ADED81B0076018F /* ChatLineView.m */; };
 		664EF6981ADEDE650076018F /* FlippedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 664EF6971ADEDE650076018F /* FlippedView.m */; };
+		66E4B2861ADEFC1F00A53837 /* DraggableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E4B2851ADEFC1F00A53837 /* DraggableView.m */; };
+		66E4B28A1ADEFC5600A53837 /* DraggableWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E4B2891ADEFC5600A53837 /* DraggableWindow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,10 @@
 		664EF6941ADED81B0076018F /* ChatLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatLineView.m; sourceTree = "<group>"; };
 		664EF6961ADEDE650076018F /* FlippedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlippedView.h; sourceTree = "<group>"; };
 		664EF6971ADEDE650076018F /* FlippedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlippedView.m; sourceTree = "<group>"; };
+		66E4B2841ADEFC1F00A53837 /* DraggableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraggableView.h; sourceTree = "<group>"; };
+		66E4B2851ADEFC1F00A53837 /* DraggableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraggableView.m; sourceTree = "<group>"; };
+		66E4B2881ADEFC5600A53837 /* DraggableWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraggableWindow.h; sourceTree = "<group>"; };
+		66E4B2891ADEFC5600A53837 /* DraggableWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraggableWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +298,7 @@
 		664EF68F1ADED1FD0076018F /* ChatLine */ = {
 			isa = PBXGroup;
 			children = (
+				66E4B2871ADEFC3D00A53837 /* DraggableWindow */,
 				664EF6901ADED20A0076018F /* ChatLine.h */,
 				664EF6911ADED20A0076018F /* ChatLine.m */,
 				664EF6931ADED81B0076018F /* ChatLineView.h */,
@@ -302,6 +309,17 @@
 				663D67271ADEE1AD00B81230 /* ColorView.m */,
 			);
 			name = ChatLine;
+			sourceTree = "<group>";
+		};
+		66E4B2871ADEFC3D00A53837 /* DraggableWindow */ = {
+			isa = PBXGroup;
+			children = (
+				66E4B2841ADEFC1F00A53837 /* DraggableView.h */,
+				66E4B2851ADEFC1F00A53837 /* DraggableView.m */,
+				66E4B2881ADEFC5600A53837 /* DraggableWindow.h */,
+				66E4B2891ADEFC5600A53837 /* DraggableWindow.m */,
+			);
+			name = DraggableWindow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,6 +425,7 @@
 				664BCF811ADE3EC60094CC72 /* DDLog.m in Sources */,
 				664BCF6D1ADE3EB80094CC72 /* GCDAsyncSocket.m in Sources */,
 				664BCF671ADE3E910094CC72 /* DDRange.m in Sources */,
+				66E4B28A1ADEFC5600A53837 /* DraggableWindow.m in Sources */,
 				664EF6921ADED20A0076018F /* ChatLine.m in Sources */,
 				663D67281ADEE1AD00B81230 /* ColorView.m in Sources */,
 				664BCF891ADE407F0094CC72 /* MyHTTPConnection.m in Sources */,
@@ -420,6 +439,7 @@
 				664BCF651ADE3E910094CC72 /* DDData.m in Sources */,
 				664EF6951ADED81B0076018F /* ChatLineView.m in Sources */,
 				664BCF5C1ADE3E910094CC72 /* HTTPServer.m in Sources */,
+				66E4B2861ADEFC1F00A53837 /* DraggableView.m in Sources */,
 				664BCF841ADE3EC60094CC72 /* DispatchQueueLogFormatter.m in Sources */,
 				664BCF631ADE3E910094CC72 /* HTTPAsyncFileResponse.m in Sources */,
 				664BCF821ADE3EC60094CC72 /* DDTTYLogger.m in Sources */,
