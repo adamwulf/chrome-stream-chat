@@ -8,7 +8,6 @@ function processLog(host, sender, message){
 
 
 function processLiveCodingLogElement($e){
-	console.log("found log");
 	console.log($e.text());
 	
 	var sender = $e.find("a").text().trim();
@@ -50,15 +49,13 @@ chrome.extension.sendMessage({}, function(response) {
 	
 			// ----------------------------------------------------------
 			// This part of the script triggers when page is done loading
-			console.log("Hello. This message was sent from scripts/inject.js");
 			// ----------------------------------------------------------
-	
 			
-				// livecoding.tv
 				var currLCSib = false;
 				var currYTSib = false;
 				var currTWSib = false;
 				setInterval(function() {
+					// livecoding.tv
 					if(!currLCSib){
 						currLCSib = $("ul.message-pane li:first");
 						if(currLCSib.length){
@@ -71,7 +68,7 @@ chrome.extension.sendMessage({}, function(response) {
 						processLiveCodingLogElement(currLCSib);
 					}
 
-
+					// youtube
 					if(!currYTSib){
 						currYTSib = $("ul#all-comments li:first");
 						if(currYTSib.length){
@@ -84,8 +81,7 @@ chrome.extension.sendMessage({}, function(response) {
 						processYouTubeLogElement(currYTSib);
 					}
 					
-					
-					
+					// twitch
 					if(!currTWSib){
 						currTWSib = $("ul.chat-lines li.chat-line:first");
 						if(currTWSib.length){
