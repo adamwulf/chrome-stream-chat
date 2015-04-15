@@ -23,12 +23,16 @@
     host.stringValue = line.host;
     sender.stringValue = line.sender;
     message.stringValue = line.message;
+    message.lineBreakMode = NSLineBreakByWordWrapping;
     
     [host sizeToFit];
     [sender sizeToFit];
-    [message sizeToFit];
+    NSSize s = [message sizeThatFits:NSMakeSize(width, 1000)];
+    NSRect fr = message.frame;
+    fr.size.height = s.height;
+    message.frame = fr;
     
-    if(self = [super initWithFrame:NSMakeRect(0, 0, width, host.bounds.size.height + 20 + message.bounds.size.height)]){
+    if(self = [super initWithFrame:NSMakeRect(0, 0, width, host.bounds.size.height + 10 + message.bounds.size.height)]){
         ColorView* border = [[ColorView alloc] initWithFrame:NSMakeRect(0, 0, width, 1)];
         [self addSubview:border];
         
@@ -40,6 +44,7 @@
         [host setBordered:NO];
         [sender setBordered:NO];
         [message setBordered:NO];
+        
         sender.backgroundColor = [NSColor clearColor];
         host.backgroundColor = [NSColor clearColor];
         message.backgroundColor = [NSColor clearColor];
@@ -50,7 +55,7 @@
         
         sender.frame = NSMakeRect(0, 5, sender.bounds.size.width, sender.bounds.size.height);
         host.frame = NSMakeRect(width - host.bounds.size.width, 5, host.bounds.size.width, host.bounds.size.height);
-        message.frame = NSMakeRect(0, self.bounds.size.height - message.bounds.size.height - 15, message.bounds.size.width, message.bounds.size.height);
+        message.frame = NSMakeRect(0, self.bounds.size.height - message.bounds.size.height - 5, message.bounds.size.width, message.bounds.size.height);
     }
     return self;
 }

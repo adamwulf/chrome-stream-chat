@@ -72,7 +72,9 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
         {
             NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
             NSString *key = [[pairComponents firstObject] stringByRemovingPercentEncoding];
-            NSString *value = [[pairComponents lastObject] stringByRemovingPercentEncoding];
+            NSString *value = [pairComponents lastObject];
+            value = [value stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+            value = [value stringByRemovingPercentEncoding];
             
             [params setObject:value forKey:key];
         }

@@ -18,7 +18,7 @@
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
-@interface AppDelegate ()
+@interface AppDelegate ()<NSWindowDelegate>
 
 @property (weak) IBOutlet NSWindow *window;
 
@@ -35,6 +35,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // Configure our logging framework.
     // To keep things simple and fast, we're just going to log to the Xcode console.
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
+    self.window.delegate = self;
     
     chatLines = [NSMutableArray array];
     
@@ -107,8 +109,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             isAtBottom = NO;
         }
         
-        
-        
         [chatLines addObject:chat];
         
         ChatLineView* v = [[ChatLineView alloc] initWithChatLine:chat forWidth:scrollView.bounds.size.width];
@@ -163,5 +163,18 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     return dirPath;
 }
 
+
+#pragma mark - NSWindowDelegate
+
+- (void)windowDidResize:(NSNotification *)notification{
+    NSArray* arr = [chatLines copy];
+    [chatLines removeAllObjects];
+    documentView = [[FlippedView alloc] initWithFrame:NSMakeRect(0, 0, scrollView.bounds.size.width, 1)];
+    scrollView.documentView = documentView;
+    [[scrollView contentView] scrollToPoint:NSMakePoint(0, 0)];
+    for (ChatLine* line in arr) {
+        [self chatLineAdded:line];
+    }
+}
 
 @end
