@@ -38,6 +38,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     self.window.delegate = self;
     
+    // set window to float above all others
+    [self.window setLevel: NSStatusWindowLevel];
+    // to make the background transparent
+    self.window.opaque = NO;
+    self.window.backgroundColor = [NSColor clearColor];
+    
     chatLines = [NSMutableArray array];
     
     // Initalize our http server
