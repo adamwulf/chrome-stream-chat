@@ -24,9 +24,8 @@
     sender.stringValue = line.sender;
     message.stringValue = line.message;
     message.lineBreakMode = NSLineBreakByWordWrapping;
-    
+
     [host sizeToFit];
-    [sender sizeToFit];
     NSSize s = [message sizeThatFits:NSMakeSize(width, 1000)];
     NSRect fr = message.frame;
     fr.size.height = s.height;

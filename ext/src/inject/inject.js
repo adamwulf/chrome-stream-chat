@@ -13,7 +13,11 @@ function processLog(host, sender, message){
 function processLiveCodingLogElement($e){
 	console.log($e.text());
 	
+	var timeStamp = $e.find("a small").text().trim();
 	var sender = $e.find("a").text().trim();
+	sender = sender.substr(timeStamp.length);
+	
+	
 	var $c = $e.clone();
 	$c.find("a").remove();
 	$c.find("img").replaceWith(function() { return $.trim(this.alt); });
