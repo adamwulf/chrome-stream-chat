@@ -28,8 +28,12 @@ function processLiveCodingLogElement($e){
 
 function processYouTubeLogElement($e){
 	try{
-		var sender = $e.find(".inline-author").text().trim();
-		var comment = $e.find(".inline-comment").text().trim();
+		console.log("process youtube: ");
+		console.log($e);
+		var sender = $e.find("a").text().trim();
+		var comment = $e.find(".comment-text").text().trim();
+		console.log("sender: " + sender);
+		console.log("comment: " + comment);
 		processLog(window.location.hostname, sender, comment);
 	}catch(e){
 		console.log(e);
@@ -38,8 +42,6 @@ function processYouTubeLogElement($e){
 
 
 function processTwitchLogElement($e){
-console.log("log from twitch: ");
-console.log($e);
 	if(!$e.find('li').hasClass("admin")){
 		$c = $e.clone();
 		$c.find(".message").find("img").replaceWith(function() { return this.alt; });
