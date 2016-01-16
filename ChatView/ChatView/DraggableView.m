@@ -10,6 +10,12 @@
 
 @implementation DraggableView
 
+-(void) awakeFromNib{
+    self.wantsLayer = YES;
+    self.layer.borderWidth = 1;
+    self.layer.borderColor = [NSColor blackColor].CGColor;
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     

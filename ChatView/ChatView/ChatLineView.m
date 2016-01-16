@@ -10,6 +10,8 @@
 #import "ChatLine.h"
 #import "ColorView.h"
 
+#define kLeftPadding 10
+
 @implementation ChatLineView{
     NSTextField* host;
     NSTextField* sender;
@@ -52,9 +54,9 @@
         [self addSubview:sender];
         [self addSubview:message];
         
-        sender.frame = NSMakeRect(0, 5, sender.bounds.size.width, sender.bounds.size.height);
+        sender.frame = NSMakeRect(kLeftPadding, 5, sender.bounds.size.width, sender.bounds.size.height);
         host.frame = NSMakeRect(width - host.bounds.size.width, 5, host.bounds.size.width, host.bounds.size.height);
-        message.frame = NSMakeRect(0, self.bounds.size.height - message.bounds.size.height - 5, message.bounds.size.width, message.bounds.size.height);
+        message.frame = NSMakeRect(kLeftPadding, self.bounds.size.height - message.bounds.size.height - 5, width - kLeftPadding, message.bounds.size.height);
     }
     return self;
 }
