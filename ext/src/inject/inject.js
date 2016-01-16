@@ -38,7 +38,9 @@ function processYouTubeLogElement($e){
 
 
 function processTwitchLogElement($e){
-	if(!$e.hasClass("admin")){
+console.log("log from twitch: ");
+console.log($e);
+	if(!$e.find('li').hasClass("admin")){
 		$c = $e.clone();
 		$c.find(".message").find("img").replaceWith(function() { return this.alt; });
 
@@ -90,14 +92,14 @@ chrome.extension.sendMessage({}, function(response) {
 					
 					// twitch
 					if(!currTWSib){
-						currTWSib = $("ul.chat-lines li.chat-line:first");
+						currTWSib = $("ul.chat-lines div.ember-view:first");
 						if(currTWSib.length){
 							processTwitchLogElement(currTWSib);
 						}else{
 							currTWSib = false;
 						}
-					}else if(currTWSib.nextAll("li.chat-line").length){
-						currTWSib = currTWSib.nextAll("li.chat-line");
+					}else if(currTWSib.nextAll("div.ember-view").length){
+						currTWSib = currTWSib.nextAll("div.ember-view");
 						processTwitchLogElement(currTWSib);
 					}
 
