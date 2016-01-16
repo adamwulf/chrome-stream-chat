@@ -3,25 +3,23 @@ chrome.runtime.onMessage.addListener(
 	    
 	    if( request.host && request.sender && request.message){
 			console.log("formatted [" + request.host + "] [" + request.sender + "] [" + request.message + "]");
-			$.ajax({
-			  type: "POST",
-			  url: "http://localhost:54545/",
-			  data: { "host" : request.host,
-				  "sender" : request.sender,
-				  "message" : request.message
-			  },
-			  dataType : 'html',
-	          success: function(data) {
-	            //called when successful
-	          	console.log("success: " + data);
-	          },
-  	          error:function( jqXHR, textStatus, errorThrown){
-	          	console.log("error: " + textStatus + ":" + errorThrown);
-	          }
+		}
+		
+		$.ajax({
+		  type: "POST",
+		  url: "http://localhost:54545/",
+		  data: request,
+		  dataType : 'html',
+          success: function(data) {
+            //called when successful
+          	console.log("success: " + data);
+          },
+          error:function( jqXHR, textStatus, errorThrown){
+          	console.log("error: " + textStatus + ":" + errorThrown);
+          }
 
-			});
-	    }
-	        
+		});
+
 	    
         console.log("background.js got a message")
         console.log(request);

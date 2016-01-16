@@ -15,6 +15,8 @@
     HTTPServer *httpServer;
 }
 
+-(void) chatViewerCountUpdated:(NSInteger)lcCount;
+
 -(void) chatLineAdded:(ChatLine*)chat;
 
 

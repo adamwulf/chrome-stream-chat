@@ -80,13 +80,19 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
         }
 
         AppDelegate* delegate = [[NSApplication sharedApplication] delegate];
-        ChatLine* chat = [[ChatLine alloc] initWithHost:[params objectForKey:@"host"]
-                                              andSender:[params objectForKey:@"sender"]
-                                             andMessage:[params objectForKey:@"message"]];
-        [delegate chatLineAdded:chat];
-		
-        NSLog(@"query: %@", params);
-        
+        if([params objectForKey:@"host"]){
+            ChatLine* chat = [[ChatLine alloc] initWithHost:[params objectForKey:@"host"]
+                                                  andSender:[params objectForKey:@"sender"]
+                                                 andMessage:[params objectForKey:@"message"]];
+            [delegate chatLineAdded:chat];
+            NSLog(@"chatline: %@", params);
+        }else if([params objectForKey:@"lcCount"]){
+            [delegate chatViewerCountUpdated:[[params objectForKey:@"lcCount"] integerValue]];
+        }else{
+            NSLog(@"query: %@", params);
+        }
+
+
 		NSData *response = [@"<html><body>Correct<body></html>" dataUsingEncoding:NSUTF8StringEncoding];
 		
 		return [[HTTPDataResponse alloc] initWithData:response];

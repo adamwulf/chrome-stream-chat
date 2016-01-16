@@ -9,6 +9,15 @@ function processLog(host, sender, message){
 	);
 }
 
+function processViewerCounts(lcViewerCount, twViewerCount, ytViewerCount){
+	chrome.runtime.sendMessage(
+	    {"lcCount": lcViewerCount, "twCount" : twViewerCount, "ytCount" : ytViewerCount},
+	    function (response) {
+	        console.log(response);
+	    }
+	);
+}
+
 
 function processLiveCodingLogElement($e){
 	console.log($e.text());
@@ -62,10 +71,24 @@ chrome.extension.sendMessage({}, function(response) {
 			// This part of the script triggers when page is done loading
 			// ----------------------------------------------------------
 			
+				var lastKnownLCViewerCount = 0;
 				var currLCSib = false;
 				var currYTSib = false;
 				var currTWSib = false;
 				setInterval(function() {
+					var lcViewerCount = $("#views_live").text();
+					var countDidChange = false;
+					if(lastKnownLCViewerCount != lcViewerCount){
+						lastKnownLCViewerCount = lcViewerCount;
+						console.log("livecoding viewer count: " + lcViewerCount);
+						countDidChange = true;
+					}
+
+					if(countDidChange){
+						processViewerCounts(lastKnownLCViewerCount, 0, 0);
+					}
+
+
 					// livecoding.tv
 					if(!currLCSib){
 						currLCSib = $("ul.message-pane li:first");
@@ -78,7 +101,8 @@ chrome.extension.sendMessage({}, function(response) {
 						currLCSib = currLCSib.next();
 						processLiveCodingLogElement(currLCSib);
 					}
-
+					
+					
 					// youtube
 					if(!currYTSib){
 						currYTSib = $("ul#all-comments li:first");

@@ -14,6 +14,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="scrollView" destination="hrW-tD-0je" id="VBS-HU-b28"/>
+                <outlet property="viewerCountLbl" destination="3Gr-kI-qtQ" id="gqd-CP-6Wf"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -667,7 +668,7 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="ChatView" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="none" id="QvC-M9-y7g" customClass="DraggableWindow">
+        <window title="ChatView" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" releasedWhenClosed="NO" animationBehavior="none" id="QvC-M9-y7g" customClass="DraggableWindow">
             <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" stationary="YES" ignoresCycle="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -678,29 +679,37 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="hrW-tD-0je">
-                        <rect key="frame" x="-1" y="-1" width="482" height="362"/>
+                        <rect key="frame" x="-1" y="-1" width="482" height="337"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="LuI-jU-gGG">
-                            <rect key="frame" x="1" y="1" width="166" height="79"/>
+                            <rect key="frame" x="0.0" y="0.0" width="482" height="337"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XBD-dM-3QU">
-                                    <rect key="frame" x="0.0" y="0.0" width="166" height="79"/>
+                                    <rect key="frame" x="0.0" y="258" width="166" height="79"/>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                         </clipView>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="myT-ll-xRc">
-                            <rect key="frame" x="0.0" y="346" width="482" height="16"/>
+                            <rect key="frame" x="0.0" y="321" width="482" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="qUz-A5-xvS">
-                            <rect key="frame" x="466" y="0.0" width="16" height="362"/>
+                            <rect key="frame" x="466" y="0.0" width="16" height="337"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Gr-kI-qtQ">
+                        <rect key="frame" x="18" y="338" width="444" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="CT5-QO-794">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hrW-tD-0je" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="-1" id="1WL-HA-qCp"/>
+                    <constraint firstItem="hrW-tD-0je" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="24" id="1WL-HA-qCp"/>
                     <constraint firstAttribute="bottom" secondItem="hrW-tD-0je" secondAttribute="bottom" constant="-1" id="IZ1-uU-yVb"/>
                     <constraint firstItem="hrW-tD-0je" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="-1" id="baT-93-7TK"/>
                     <constraint firstAttribute="trailing" secondItem="hrW-tD-0je" secondAttribute="trailing" constant="-1" id="qRJ-T4-FmQ"/>

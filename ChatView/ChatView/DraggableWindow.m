@@ -10,6 +10,10 @@
 
 @implementation DraggableWindow
 
+-(void) awakeFromNib{
+    [self setHasShadow:NO];
+}
+
 -(BOOL) isMovableByWindowBackground{
     return YES;
 }

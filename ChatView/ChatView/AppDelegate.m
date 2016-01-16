@@ -27,6 +27,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 @implementation AppDelegate{
     NSMutableArray* chatLines;
     IBOutlet NSScrollView* scrollView;
+    IBOutlet NSTextField* viewerCountLbl;
     NSView* documentView;
 }
 
@@ -78,6 +79,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     scrollView.documentView = documentView;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self chatViewerCountUpdated:0];
         [self chatLineAdded:[[ChatLine alloc] initWithHost:@"" andSender:@"welcome" andMessage:@"chat messages appear here."]];
     });
 }
@@ -86,6 +88,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // Insert code here to tear down your application
 }
 
+-(void) chatViewerCountUpdated:(NSInteger)lcCount{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [viewerCountLbl setStringValue:[NSString stringWithFormat:@"LiveCoding.tv: %d", (int) lcCount]];
+    });
+}
 
 -(void) chatLineAdded:(ChatLine*)chat{
     dispatch_async(dispatch_get_main_queue(), ^{
