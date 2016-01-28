@@ -18,12 +18,37 @@
     NSTextField* message;
 }
 
+static NSMutableDictionary* colors;
+
++(NSColor*) randomColor{
+    CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
+    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
+    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
+    return [NSColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+}
+
+-(NSColor*) colorForSender:(NSString*)name{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        colors = [NSMutableDictionary dictionary];
+    });
+    if(![colors objectForKey:name]){
+        [colors setObject:[ChatLineView randomColor] forKey:name];
+    }
+    return [colors objectForKey:name];
+}
+
 -(id) initWithChatLine:(ChatLine*)line forWidth:(CGFloat)width{
     host = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, width, 100)];
     sender = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, width, 100)];
     message = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, width, 100)];
+    [sender setFont:[NSFont boldSystemFontOfSize:15]];
+    [host setFont:[NSFont systemFontOfSize:15]];
+    [message setFont:[NSFont boldSystemFontOfSize:20]];
+
     host.stringValue = line.host;
     sender.stringValue = line.sender;
+    sender.textColor = [self colorForSender:line.sender];
     message.stringValue = line.message;
     message.lineBreakMode = NSLineBreakByWordWrapping;
 
@@ -32,13 +57,12 @@
     NSRect fr = message.frame;
     fr.size.height = s.height;
     message.frame = fr;
-    
+
+    message.autoresizingMask = NSViewWidthSizable;
+    sender.autoresizingMask = NSViewWidthSizable | NSViewMaxXMargin;
+    host.autoresizingMask = NSViewWidthSizable | NSViewMinXMargin;
+
     if(self = [super initWithFrame:NSMakeRect(0, 0, width, host.bounds.size.height + 10 + message.bounds.size.height)]){
-        ColorView* border = [[ColorView alloc] initWithFrame:NSMakeRect(0, 0, width, 1)];
-        [self addSubview:border];
-        
-        [sender setFont:[NSFont boldSystemFontOfSize:sender.font.pointSize]];
-        
         [host setEditable:NO];
         [sender setEditable:NO];
         [message setEditable:NO];
@@ -53,6 +77,9 @@
         [self addSubview:host];
         [self addSubview:sender];
         [self addSubview:message];
+
+        self.wantsLayer = YES;
+        self.layer.backgroundColor = [[NSColor whiteColor] colorWithAlphaComponent:.8].CGColor;
         
         sender.frame = NSMakeRect(kLeftPadding, 5, sender.bounds.size.width, sender.bounds.size.height);
         host.frame = NSMakeRect(width - host.bounds.size.width, 5, host.bounds.size.width, host.bounds.size.height);

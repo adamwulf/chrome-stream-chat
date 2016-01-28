@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15D9c" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15E27e" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
@@ -679,23 +679,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="hrW-tD-0je">
-                        <rect key="frame" x="-1" y="-1" width="482" height="337"/>
+                        <rect key="frame" x="-1" y="-1" width="482" height="361"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="LuI-jU-gGG">
-                            <rect key="frame" x="0.0" y="0.0" width="482" height="337"/>
+                            <rect key="frame" x="0.0" y="0.0" width="482" height="361"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XBD-dM-3QU">
-                                    <rect key="frame" x="0.0" y="258" width="166" height="79"/>
+                                    <rect key="frame" x="0.0" y="282" width="166" height="79"/>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                         </clipView>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="myT-ll-xRc">
-                            <rect key="frame" x="0.0" y="321" width="482" height="16"/>
+                            <rect key="frame" x="0.0" y="346" width="467" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="qUz-A5-xvS">
-                            <rect key="frame" x="466" y="0.0" width="16" height="337"/>
+                            <rect key="frame" x="467" y="0.0" width="15" height="346"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -709,7 +709,7 @@
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hrW-tD-0je" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="24" id="1WL-HA-qCp"/>
+                    <constraint firstItem="hrW-tD-0je" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="1WL-HA-qCp"/>
                     <constraint firstAttribute="bottom" secondItem="hrW-tD-0je" secondAttribute="bottom" constant="-1" id="IZ1-uU-yVb"/>
                     <constraint firstItem="hrW-tD-0je" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="-1" id="baT-93-7TK"/>
                     <constraint firstAttribute="trailing" secondItem="hrW-tD-0je" secondAttribute="trailing" constant="-1" id="qRJ-T4-FmQ"/>

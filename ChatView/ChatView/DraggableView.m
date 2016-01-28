@@ -12,7 +12,7 @@
 
 -(void) awakeFromNib{
     self.wantsLayer = YES;
-    self.layer.borderWidth = 1;
+    self.layer.borderWidth = 0;
     self.layer.borderColor = [NSColor blackColor].CGColor;
 }
 
@@ -25,6 +25,14 @@
 
 -(BOOL) mouseDownCanMoveWindow{
     return YES;
+}
+
+-(void) mouseDown:(NSEvent *)theEvent{
+    self.layer.borderWidth = 1;
+}
+
+-(void) mouseUp:(NSEvent *)theEvent{
+    self.layer.borderWidth = 0;
 }
 
 @end

@@ -13,6 +13,7 @@
 #import "MyHTTPConnection.h"
 #import "ChatLineView.h"
 #import "FlippedView.h"
+#import <QuartzCore/QuartzCore.h>
 
 // Log levels: off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -36,7 +37,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // Configure our logging framework.
     // To keep things simple and fast, we're just going to log to the Xcode console.
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
-    
+
+    viewerCountLbl.hidden = YES;
+
     self.window.delegate = self;
     
     // set window to float above all others
@@ -77,6 +80,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     documentView = [[FlippedView alloc] initWithFrame:NSMakeRect(0, 0, scrollView.bounds.size.width, 1)];
     scrollView.documentView = documentView;
+    scrollView.horizontalScroller = nil;
+    scrollView.verticalScroller = nil;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self chatViewerCountUpdated:0];
@@ -97,38 +102,38 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 -(void) chatLineAdded:(ChatLine*)chat{
     dispatch_async(dispatch_get_main_queue(), ^{
 
-        BOOL isAtBottom = NO;
-        
-        NSLog(@"offset = %f", [[scrollView contentView] documentVisibleRect].origin.y);
         CGFloat offset = [[scrollView contentView] documentVisibleRect].origin.y;
         CGFloat visibleHeight = [[scrollView contentView] documentVisibleRect].size.height;
-        CGFloat contentHeight = documentView.bounds.size.height;
-        if(offset + visibleHeight >= contentHeight){
-            isAtBottom = YES;
-        }else{
-            isAtBottom = NO;
-        }
-        
+        CGFloat contentHeight = MAX(scrollView.bounds.size.height,  documentView.bounds.size.height);
+
         [chatLines addObject:chat];
         
         ChatLineView* v = [[ChatLineView alloc] initWithChatLine:chat forWidth:scrollView.bounds.size.width];
-        NSRect fr = [[documentView.subviews lastObject] frame];
-        v.frame = NSMakeRect(0, fr.origin.y + fr.size.height, v.bounds.size.width, v.bounds.size.height);
-        contentHeight += fr.size.height;
+        v.frame = NSMakeRect(0, contentHeight, v.bounds.size.width, v.bounds.size.height);
+
+        contentHeight += v.bounds.size.height;
         
-        fr = [scrollView.documentView frame];
-        fr.size.height += v.bounds.size.height;
+        NSRect fr = [scrollView.documentView frame];
+        fr.size.height = contentHeight;
         [scrollView.documentView setFrame:fr];
         
         [documentView addSubview:v];
         
         scrollView.hasHorizontalScroller = NO;
-        scrollView.hasVerticalScroller = YES;
+        scrollView.hasVerticalScroller = NO;
         
         offset = contentHeight - visibleHeight;
         if(offset < 0) offset = 0;
         NSPoint pointToScrollTo = NSMakePoint(0, offset);
         [[scrollView contentView] scrollToPoint:pointToScrollTo];
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+                [context setDuration: 1.0];
+                [context setTimingFunction: [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+                [v.animator setAlphaValue: 0.0];
+            } completionHandler:NULL];
+        });
     });
 }
 
